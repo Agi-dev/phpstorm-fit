@@ -1,0 +1,76 @@
+---
+Test
+---
+!1 Game management
+
+!3 Setup
+
+!| Organization |
+| name    | city  | zipCode | owner firstname | owner lastname | owner email                             | create ? | 
+| ORGA 01 | Paris | 75016   | Olivier         | Hoareau        | olivier+orga01_owner@tomboladirecte.com | CREATED  | 
+
+!3 Creation
+
+!| Game |
+| name                  | organization primary key | email                                   | keywords       | create?                                                                                                                           | features ?                                                                                                                                                            | 
+| My Game 1             |                          |                                         |                | Exception#412: Malformed data: organization => Cette valeur ne doit pas être vide. owner => Cette valeur ne doit pas être vide. | Exception#412: Value of criteria 'keywords' is malformed                                                                                                              | 
+| My Game 1             | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com |                | CREATED                                                                                                                           | agreement, bunches, cancellation, godfatherDisabled, limited_capital, limited_time, publicPageDesktopOnly, sale_confirmation_customization, sponsorship, tickets      | 
+| My Game With Keywords | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | 32321:DONTEST1 | CREATED                                                                                                                           | agreement, bunches, cancellation, godfatherDisabled, limited_capital, limited_time, publicPageDesktopOnly, sale_confirmation_customization, sms, sponsorship, tickets | 
+
+!3 Read
+
+!| Game |
+| name      | organization name? | email?                                  | 
+| My Game 1 | ORGA 01            | olivier+orga01_owner@tomboladirecte.com | 
+
+!| Game |
+| name      | find?   | 
+| My Game 1 | 1 FOUND | 
+
+!3 Update
+
+!| Game |
+| name              | type            | by name           | keywords       | update?                                                             | features ? | 
+| My Renamed Game 1 | digitalDonation | My Game 1         |                | UPDATED but "type" field is not updated ("") with "digitalDonation" | BLANK      | 
+| My Renamed Game 1 |                 | My Renamed Game 1 | 32321:DONTEST2 | UPDATED                                                             | sms        | 
+
+!| Game |
+| name      | by name           | update? | 
+| My Game 1 | My Renamed Game 1 | UPDATED | 
+
+!3 Delete
+
+!| Game |
+| name      | delete? | 
+| My Game 1 | DELETED | 
+
+!3 Game customization
+!| Game |
+| name                             | organization primary key | email                                   | promiseCreatedSmsMessageTemplate | create?                                                                                               | 
+| Game with customized sms message | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template here                 | Exception#412: Malformed data: promiseCreatedSmsMessageTemplate => Votre message doit contenir [URL]. | 
+| Game with customized sms message | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template with [URL] here      | CREATED                                                                                               | 
+
+!| Game |
+| name                                               | organization primary key | email                                   | promiseSecondReminderSmsMessageTemplate | create?                                                                                                      | 
+| Game with customized sms message (second reminder) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template here                        | Exception#412: Malformed data: promiseSecondReminderSmsMessageTemplate => Votre message doit contenir [URL]. | 
+| Game with customized sms message (second reminder) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template with [URL] here             | CREATED                                                                                                      | 
+
+!| Game |
+| name                                              | organization primary key | email                                   | promiseThirdReminderSmsMessageTemplate | create?                                                                                                     | 
+| Game with customized sms message (third reminder) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template here                       | Exception#412: Malformed data: promiseThirdReminderSmsMessageTemplate => Votre message doit contenir [URL]. | 
+| Game with customized sms message (third reminder) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template with [URL] here            | CREATED                                                                                                     | 
+
+!| Game |
+| name                                                              | organization primary key | email                                   | engagementConfirmationSmsMessageTemplate | create?                                                                                                       | 
+| Game with second customized sms message (engagement confirmation) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template here                         | Exception#412: Malformed data: engagementConfirmationSmsMessageTemplate => Votre message doit contenir [URL]. | 
+| Game with second customized sms message                           | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template with [URL] here              | CREATED                                                                                                       | 
+
+!| Game |
+| name                                                    | organization primary key | email                                   | promiseReminderSmsMessageTemplate | create?                                                                                                | 
+| Game with third customized sms message (first reminder) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template here                  | Exception#412: Malformed data: promiseReminderSmsMessageTemplate => Votre message doit contenir [URL]. | 
+| Game with third customized sms message (first reminder) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template with [URL] here       | CREATED                                                                                                | 
+
+!| Game |
+| name                                                   | organization primary key | email                                   | lastPromiseReminderSmsMessageTemplate | create?                                                                                                    | 
+| Game with third customized sms message (last reminder) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template here                      | Exception#412: Malformed data: lastPromiseReminderSmsMessageTemplate => Votre message doit contenir [URL]. | 
+| Game with third customized sms message (last reminder) | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | My template with [URL] here           | CREATED                                                                                                    | 
