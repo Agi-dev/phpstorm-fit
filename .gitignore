@@ -1,0 +1,13 @@
+/build/
+/phpunit.xml
+/vendor/
+/.idea/
+/bin/phpunit
+/bin/phploc
+/bin/phpcs
+/bin/phpcbf
+/bin/simple-phpunit
+/bin/dev
+/composer.phar
+/composer.lock
+/reports/

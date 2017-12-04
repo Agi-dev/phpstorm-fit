@@ -1,7 +1,6 @@
 #!/usr/bin/php
 
 <?php
-
 function getHeader(&$data)
 {
     $content = '';
@@ -46,7 +45,7 @@ function alignBlock(&$data)
                 continue;
             }
 
-            $lg = strlen(trim($col));
+            $lg = mb_strlen(trim($col));
             if (!isset($maxCol[$index])) {
                 $maxCol[$index] = $lg;
                 continue;
@@ -62,6 +61,7 @@ function alignBlock(&$data)
     foreach ($block as $row) {
         foreach ($row as $index => $col) {
             if (isset($maxCol[$index])) {
+                $maxCol[$index] += strlen($col) - mb_strlen($col);
                 $content .= sprintf("| %-".$maxCol[$index]."s ", $col);
             }
         }
@@ -71,7 +71,7 @@ function alignBlock(&$data)
     return $content;
 }
 
-if ($argc !== 2) {
+if ($argc < 2) {
     echo 'beautifyFitnesse <fitnesse file>'.PHP_EOL;
     return 1;
 }
@@ -80,7 +80,7 @@ if (!file_exists($fileToBeautify)) {
     echo 'File '.$fileToBeautify.' not found '.PHP_EOL;
     return 1;
 }
-
+$fileDest = (isset($argv[2]) ? $argv[2] : $fileToBeautify);
 $data = file($fileToBeautify, FILE_IGNORE_NEW_LINES);
 
 echo PHP_EOL . 'Beautify ' . $fileToBeautify . ' ... ';
@@ -91,7 +91,7 @@ do{
     $content .= alignBlock($data);
 } while ($data);
 
-file_put_contents($fileToBeautify, $content);
+file_put_contents($fileDest, $content);
 echo 'Ok' . PHP_EOL;
 
 return 0;

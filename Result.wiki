@@ -6,13 +6,14 @@ Test
 !3 Setup
 
 !| Organization |
-| name    | city  | zipCode | owner firstname | owner lastname | owner email                             | create ? | 
-| ORGA 01 | Paris | 75016   | Olivier         | Hoareau        | olivier+orga01_owner@tomboladirecte.com | CREATED  | 
+| name    | owner firstname | 
+| ORGA 01 | Olivier         | 
+| ORGA 01 | Oliviér         | 
 
 !3 Creation
 
 !| Game |
-| name                  | organization primary key | email                                   | keywords       | create?                                                                                                                           | features ?                                                                                                                                                            | 
+| name                  | organization primary key | email                                   | keywords       | create?                                                                                                                         | features ?                                                                                                                                                            | 
 | My Game 1             |                          |                                         |                | Exception#412: Malformed data: organization => Cette valeur ne doit pas être vide. owner => Cette valeur ne doit pas être vide. | Exception#412: Value of criteria 'keywords' is malformed                                                                                                              | 
 | My Game 1             | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com |                | CREATED                                                                                                                           | agreement, bunches, cancellation, godfatherDisabled, limited_capital, limited_time, publicPageDesktopOnly, sale_confirmation_customization, sponsorship, tickets      | 
 | My Game With Keywords | 75016ORGA01              | olivier+orga01_owner@tomboladirecte.com | 32321:DONTEST1 | CREATED                                                                                                                           | agreement, bunches, cancellation, godfatherDisabled, limited_capital, limited_time, publicPageDesktopOnly, sale_confirmation_customization, sms, sponsorship, tickets | 

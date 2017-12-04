@@ -6,8 +6,9 @@ Test
 !3 Setup
 
 !| Organization |
-| name | city | zipCode | owner firstname | owner lastname | owner email | create ? |
-| ORGA 01 | Paris | 75016 | Olivier | Hoareau | olivier+orga01_owner@tomboladirecte.com | CREATED |
+| name | owner firstname |
+| ORGA 01 | Olivier |
+| ORGA 01 | Oliviér |
 
 !3 Creation
 
