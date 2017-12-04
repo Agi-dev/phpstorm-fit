@@ -1,7 +1,7 @@
 /build/
 /phpunit.xml
 /vendor/
-/.idea/
+.idea
 /bin/phpunit
 /bin/phploc
 /bin/phpcs
