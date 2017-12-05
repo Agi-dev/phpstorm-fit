@@ -61,8 +61,8 @@ function alignBlock(&$data)
     foreach ($block as $row) {
         foreach ($row as $index => $col) {
             if (isset($maxCol[$index])) {
-                $maxCol[$index] += strlen($col) - mb_strlen($col);
-                $content .= sprintf("| %-".$maxCol[$index]."s ", $col);
+                $fit = $maxCol[$index] + (strlen($col) - mb_strlen($col));
+                $content .= sprintf("| %-".$fit."s ", $col);
             }
         }
         $content .= '| ' . PHP_EOL;
